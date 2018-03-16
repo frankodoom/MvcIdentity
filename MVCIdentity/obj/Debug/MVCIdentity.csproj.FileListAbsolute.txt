@@ -120,3 +120,9 @@ C:\Users\DevAdmin\source\repos\MVCIdentity\MVCIdentity\obj\Debug\MVCIdentity.pdb
 C:\Users\DevAdmin\source\repos\MVCIdentity\MVCIdentity\obj\Debug\MVCIdentity.csprojResolveAssemblyReference.cache
 C:\Users\DevAdmin\source\repos\MVCIdentity\MVCIdentity\obj\Debug\MVCIdentity.Migrations.initial.resources
 C:\Users\DevAdmin\source\repos\MVCIdentity\MVCIdentity\obj\Debug\MVCIdentity.csproj.GenerateResource.cache
+C:\Users\DevAdmin\source\repos\MVCIdentity\MVCIdentity\obj\Debug\MVCIdentity.Migrations.photo_category_create.resources
+C:\Users\DevAdmin\source\repos\MVCIdentity\MVCIdentity\obj\Debug\MVCIdentity.Migrations.modified_photo_category.resources
+C:\Users\DevAdmin\source\repos\MVCIdentity\MVCIdentity\bin\PagedList.dll
+C:\Users\DevAdmin\source\repos\MVCIdentity\MVCIdentity\bin\PagedList.Mvc.dll
+C:\Users\DevAdmin\source\repos\MVCIdentity\MVCIdentity\bin\PagedList.xml
+C:\Users\DevAdmin\source\repos\MVCIdentity\MVCIdentity\bin\PagedList.Mvc.xml

@@ -52,6 +52,12 @@
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -195,6 +201,7 @@
     <Compile Include="Controllers\AppController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PhotoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -202,8 +209,18 @@
     <Compile Include="Migrations\201803141112193_initial.Designer.cs">
       <DependentUpon>201803141112193_initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201803160847091_photo_category_create.cs" />
+    <Compile Include="Migrations\201803160847091_photo_category_create.Designer.cs">
+      <DependentUpon>201803160847091_photo_category_create.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803160921191_modified_photo_category.cs" />
+    <Compile Include="Migrations\201803160921191_modified_photo_category.Designer.cs">
+      <DependentUpon>201803160921191_modified_photo_category.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\Photo.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -6787,6 +6804,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\custom\customStyles.css" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -7459,6 +7477,8 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_AdminLayout.cshtml" />
     <Content Include="Views\App\Dashboard.cshtml" />
+    <Content Include="Views\Photo\UploadPhoto.cshtml" />
+    <Content Include="Views\Photo\SearchPhotos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -7485,6 +7505,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201803141112193_initial.resx">
       <DependentUpon>201803141112193_initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803160847091_photo_category_create.resx">
+      <DependentUpon>201803160847091_photo_category_create.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803160921191_modified_photo_category.resx">
+      <DependentUpon>201803160921191_modified_photo_category.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

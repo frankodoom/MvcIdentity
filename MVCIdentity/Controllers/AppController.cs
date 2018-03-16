@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace MVCIdentity.Controllers
 {
+    [Authorize]
     public class AppController : Controller
     {
         // GET: App
