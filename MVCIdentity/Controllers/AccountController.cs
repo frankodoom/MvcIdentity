@@ -54,7 +54,8 @@ namespace MVCIdentity.Controllers
             }
         }
 
-        //
+
+           //
         // GET: /Account/Login
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
@@ -81,8 +82,8 @@ namespace MVCIdentity.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                   return RedirectToAction("DashBoard", "App");
-                    
+                    ViewBag.UserId =User.Identity.GetUserId();
+                   return RedirectToAction("DashBoard", "App");               
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -144,6 +145,9 @@ namespace MVCIdentity.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+            var context = new ApplicationDbContext();
+            var roles = context.Roles.Select(m => m.Name).AsEnumerable();
+            ViewBag.Roles = roles;
             return View();
         }
 
@@ -160,25 +164,28 @@ namespace MVCIdentity.Controllers
                 var fileName = Path.GetFileName(file.FileName);
                 var FilePath = Path.Combine(Server.MapPath("~/Photos"), fileName);
              
-
                 var user = new ApplicationUser {FirstName=model.FirstName, ImageUrl=FilePath , LastName=model.LastName, UserName = model.Email, Email = model.Email };
+
                 var result = await UserManager.CreateAsync(user, model.Password);
                 
                 if (result.Succeeded)
                 {
                     //add user to role
-                    var roleResult = await UserManager.AddToRoleAsync("", "");
-                    //Save User Photo if Registration is successful 
-                    try
-                    {
-                        file.SaveAs(FilePath);
-                    }
-                    catch (Exception ex)
-                    {
-                        Trace.WriteLine(ex);
+                    var roleResult = await UserManager.AddToRoleAsync(user.Id, model.Role  );
 
+                    if (roleResult.Succeeded)
+                    {
+                        //Save User Photo if Registration is successful 
+                        try
+                        {
+                            file.SaveAs(FilePath);
+                        }
+                        catch (Exception ex)
+                        {
+                            Trace.WriteLine(ex);
+                        }
                     }
-                    
+                                 
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771

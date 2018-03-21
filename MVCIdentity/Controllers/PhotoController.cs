@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -21,33 +22,41 @@ namespace MVCIdentity.Controllers
             return View("UploadPhoto");
         }
 
-
-
-    
-
+  
         [HttpPost]
-        public ActionResult UploadPhotos(IEnumerable<HttpPostedFileBase> files)
+        public  async Task<ActionResult> UploadPhotos(IEnumerable<HttpPostedFileBase> files)
         {
+            var res = await UploadPhotosAsync(files);
+            if (res > 0)
+            {
+                return ViewBag.Message = "Success";
+            }
+            return View();
+        }
+
+        public async Task<int> UploadPhotosAsync(IEnumerable<HttpPostedFileBase> files)
+        {
+            int count = 0;
             try
             {
                 if (files.Count() > 0)
+
                 {
                     foreach (var file in files)
                     {
                         if (file.ContentLength > 4001000)
                         {
-                            ViewBag.Message = "FIle size Exceeds 4mb";
-                            return View("UploadPhoto");
+                            continue;    
                         }
-
                         if (file.ContentType.Contains("gif"))
                         {
-                            ViewBag.Message = "gif format not supported";
-                            return View("UploadPhoto");
+                            continue;
+                            //return "NotSupported";
+                            // return View("UploadPhoto");
                         }
                         else
                         {
-                        
+
                             string _FileName = Path.GetFileName(file.FileName);
                             string _path = Path.Combine(Server.MapPath("~/Photos"), _FileName);
 
@@ -58,29 +67,29 @@ namespace MVCIdentity.Controllers
                                 FileType = file.ContentType,
                                 ImageUrl = _path
                             };
-                            
+
                             var context = new ApplicationDbContext();
                             context.Photos.Add(photo);
                             if (context.SaveChanges() > 0)
                             {
-
-                                file.SaveAs(_path);
+                               file.SaveAs(_path);
+                                count++;                    
                             }
                         }
                     }
                 }
-                ViewBag.Message = "Success";
-                return View("UploadPhoto");
+                int result = await Task.FromResult<int>(count);
+                return result;
+
             }
-            catch
+            catch(Exception ex)
             {
-                ViewBag.Message = "File upload failed!!";
-                return View("UploadPhoto");
+                return 0; ;
             }
+          
         }
 
-
-
+        [HttpGet]
         public ActionResult SearchPhotos()
         {
             ViewBag.Photos = "";
@@ -95,7 +104,7 @@ namespace MVCIdentity.Controllers
             //var photos = contex.Photos.Where(x => x.FileName == fileName).ToList();
             var photos = context.Photos.Where(x => x.FileName.Contains(fileName)).ToList();
             ViewBag.Photos = photos;
-            return View(photos);
+            return View();
         }
     }
 }
