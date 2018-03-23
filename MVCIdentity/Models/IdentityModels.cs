@@ -35,7 +35,8 @@ namespace MVCIdentity.Models
             return new ApplicationDbContext();
         }
 
-        public virtual DbSet<Photo>Photos { get; set; }
+        public virtual DbSet<Photo> Photos { get; set; }
+        public virtual DbSet<Student> Students { get; set; }
         ///public virtual DbSet<Category> Categories { get; set; }
     }
 }

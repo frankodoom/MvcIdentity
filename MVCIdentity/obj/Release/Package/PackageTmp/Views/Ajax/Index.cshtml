@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Ajax Call</h2>
+
+
+<form id="studentForm">
+    <input type="text" name="FirstName" placeholder="Enter FirstName" />
+    <br />
+    <input type="text" name="MiddleName" placeholder="Enter MiddleName" />
+    <br />
+    <input type="text" name="LastName" placeholder="Enter LastName" />
+    <br />
+
+    <select name="faculty[]" multiple>
+        <option value="1">DBC </option>
+        <option value="2">FSD</option>
+        <option value="3">LINUX</option>
+        <option value="4">WAD</option>
+    </select>
+    @*<button onclick="postJson()">Fetch Json</button>*@
+    <button onclick="postForm()">Post Json</button>
+</form>
+
+
+
+
+
+
+@section scripts{
+<script src="~/Scripts/ajax.js"></script>
+}
+

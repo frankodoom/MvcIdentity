@@ -99,8 +99,14 @@
                                 <strong>Sales: 1 Jan, 2014 - 30 Jul, 2014</strong>
                             </p>
                             <div class="chart">
-                                <!-- Sales Chart Canvas -->
-                                <canvas id="salesChart" style="height: 180px;"></canvas>
+                                <form method="get" action="/Students/GetStudentReport">
+
+                                    <button type="submit">Export Report</button>
+                                </form>
+                               
+
+                                <div id="demographics" height="250px"></div>
+
                             </div>
                             <!-- /.chart-responsive -->
                         </div>
@@ -111,60 +117,50 @@
                 </div>
                 <!-- ./box-body -->
                 <div class="box-footer">
-                    <div class="row">
-                        <div class="col-sm-3 col-xs-6">
-                            <div class="description-block border-right">
-                                <span class="description-percentage text-green"><i class="fa fa-caret-up"></i> 17%</span>
-                                <h5 class="description-header">$35,210.43</h5>
-                                <span class="description-text">TOTAL REVENUE</span>
-                            </div>
-                            <!-- /.description-block -->
-                        </div>
-                        <!-- /.col -->
-                        <div class="col-sm-3 col-xs-6">
-                            <div class="description-block border-right">
-                                <span class="description-percentage text-yellow"><i class="fa fa-caret-left"></i> 0%</span>
-                                <h5 class="description-header">$10,390.90</h5>
-                                <span class="description-text">TOTAL COST</span>
-                            </div>
-                            <!-- /.description-block -->
-                        </div>
-                        <!-- /.col -->
-                        <div class="col-sm-3 col-xs-6">
-                            <div class="description-block border-right">
-                                <span class="description-percentage text-green"><i class="fa fa-caret-up"></i> 20%</span>
-                                <h5 class="description-header">$24,813.53</h5>
-                                <span class="description-text">TOTAL PROFIT</span>
-                            </div>
-                            <!-- /.description-block -->
-                        </div>
-                        <!-- /.col -->
-                        <div class="col-sm-3 col-xs-6">
-                            <div class="description-block">
-                                <span class="description-percentage text-red"><i class="fa fa-caret-down"></i> 18%</span>
-                                <h5 class="description-header">1200</h5>
-                                <span class="description-text">GOAL COMPLETIONS</span>
-                            </div>
-                            <!-- /.description-block -->
-                        </div>
-                    </div>
-                    <!-- /.row -->
+
+ 
+
                 </div>
-                <!-- /.box-footer -->
+                <!-- /.box -->
             </div>
-            <!-- /.box -->
+            <!-- /.col -->
         </div>
-        <!-- /.col -->
-    </div>
-    <!-- /.row -->
-    <!-- Main row -->
-    <!-- /.row -->
+        <!-- /.row -->
+        <!-- Main row -->
+        <!-- /.row -->
 </section>
 <!-- /.content -->
 
 @section anything{
     <!--Page Specific Style Sheets-->
-
     <!-- ChartJS -->
-    <script src="~/Assets/bower_components/chart.js/Chart.js"></script>
+    @*<script src="~/Assets/bower_components/chart.js/Chart.js"></script>*@
+    <script src="~/Plugins/morisJs/raphael.min.js"></script>
+    <script src="~/Plugins/morisJs/morris.js"></script>
+    <script src="~/Scripts/demoMoris.js"></script>
+    @*<script>
+            new Morris.Bar({
+                // ID of the element in which to draw the chart.
+                element: 'demographics',
+                // Chart data records -- each entry in this array corresponds to a point on
+                // the chart.
+                data: [
+                    { year: '2008', value: 20 },
+                    { year: '2009', value: 10 },
+                    { year: '2010', value: 5 },
+                    { year: '2011', value: 5 },
+                    { year: '2012', value: 20 },
+                    { year: '2013', value: 18 },
+                    { year: '2014', value: 30 },
+                    { year: '2015', value: 60 }
+                ],
+                // The name of the data record attribute that contains x-values.
+                xkey: 'year',
+                // A list of names of data record attributes that contain y-values.
+                ykeys: ['value'],
+                // Labels for the ykeys -- will be displayed when you hover over the
+                // chart.
+                labels: ['Value']
+            });
+        </script>*@
 }

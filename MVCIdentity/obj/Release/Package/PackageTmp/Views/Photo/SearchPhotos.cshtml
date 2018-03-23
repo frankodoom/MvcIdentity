@@ -1,0 +1,68 @@
+﻿@model IEnumerable<MVCIdentity.Models.Photo>
+
+@{
+    ViewBag.Title = "SearchPhotos";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="col-md-4; col-md-offset-4">
+    <form method="post" action="~/Photo/SearchPhotos">
+        <input type="text" id="txtSearch" name="fileName" />
+        <br />
+        <button type="submit">
+            Search
+        </button>
+    </form>
+
+    <a class="Button" href="/Photos/SearchPhotos/?name="> Search</a>
+</div>
+
+
+
+<div class="row" style="margin-bottom:-60px">
+    <div class="col-md-6 col-md-offset-3" style="margin-top:100px">
+        @foreach (var item in ViewBag.Photos)
+    {
+        <div class="box">
+            <div class="box-header with-border">
+                <h3 class="box-title">Image Name: @item.FileName</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <diiv class="col-md-6">
+                            <img src="~/Photos/@item.FileName" height="100" width="100" style="border:solid" />
+                        </diiv>
+                        <diiv class="col-md-6">
+                            <p></p>
+                            <br />
+                            <p>File Type @item.FileType</p>
+                            <br />
+                            <p>File Size @item.FIleSize</p>
+                            <br />
+                            <p>File Size @item.FIleSize</p>
+                        </diiv>
+                    </div>
+                    <!-- /.col -->
+                    <!-- /.col -->
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- ./box-body -->
+            <div class="box-footer">
+                <!-- /.row -->
+            </div>
+            <!-- /.box-footer -->
+        </div>
+        <!-- /.box -->
+        }
+    </div> 
+  <!-- /.col -->
+    </div>
+
+    
+
+
+
+

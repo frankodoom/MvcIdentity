@@ -1,0 +1,22 @@
+﻿.skin-blue .main-header .navbar {
+    background-color: #0b5c4c;
+}
+
+
+
+.skin-blue .main-header .logo {
+    background-color: #36a958;
+    color: #fff;
+    border-bottom: 0 solid transparent;
+}
+
+
+
+.skin-blue .wrapper, .skin-blue .main-sidebar, .skin-blue .left-side {
+    background-color: #272232;
+}
+
+
+.skin-blue .sidebar a {
+    color: #da44ab;
+}

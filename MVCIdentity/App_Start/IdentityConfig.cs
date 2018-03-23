@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.Entity;
 using System.Linq;
 using System.Security.Claims;
@@ -11,6 +12,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using MVCIdentity.Models;
+using SendGrid.Helpers.Mail;
 
 namespace MVCIdentity
 {
@@ -19,7 +21,17 @@ namespace MVCIdentity
         public Task SendAsync(IdentityMessage message)
         {
             // Plug in your email service here to send an email.
-
+            var apiKey = ConfigurationManager.AppSettings["SendGrid"];
+            var client = new SendGridClient(apiKey);
+            var msg = new SendGridMessage()
+            {
+                From = new EmailAddress("solutions@cometsms.net", "COMETSMS"),
+                Subject = message.Subject,
+                PlainTextContent = message.Body,
+                //HtmlContent = "<strong>and easy to do anywhere, even with C#</strong>"
+            };
+            msg.AddTo(new EmailAddress(message.Destination, "Test User"));
+            // var response = client.SendEmailAsync(msg);
 
 
             return Task.FromResult(0);
