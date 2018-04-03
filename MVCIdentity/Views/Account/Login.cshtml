@@ -1,5 +1,7 @@
-﻿@using MVCIdentity.Models
-@model LoginViewModel
+﻿@*@model MVCIdentity.Models.ExternalLoginListViewModel*@
+@model MVCIdentity.Models.LoginViewModel
+
+@using Microsoft.Owin.Security
 @{
     Layout = "";
     ViewBag.Title = "Log in";
@@ -16,7 +18,7 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
 
-  
+
     <link rel="stylesheet" href="~/Assets/bower_components/bootstrap/dist/css/bootstrap.min.css">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="~/Assets/bower_components/font-awesome/css/font-awesome.min.css">
@@ -45,7 +47,7 @@
             <p class="login-box-msg">Sign in to start your session</p>
             <form action="/Account/login" method="post">
                 <p class="text-danger" style="text-align:center">@ViewBag.LogInfo</p>
-               @Html.AntiForgeryToken()
+                @Html.AntiForgeryToken()
                 <div class="form-group has-feedback">
                     <input type="email" class="form-control" placeholder="Email" name="Email">
                     <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
@@ -69,17 +71,26 @@
                     <!-- /.col -->
                 </div>
             </form>
-            @*<div class="social-auth-links text-center">
+            <div class="social-auth-links text-center">
                 <p>- OR -</p>
-                <a href="#" class="btn btn-block btn-social btn-facebook btn-flat">
-                    <i class="fa fa-facebook"></i> Sign in using
-                    Facebook
-                </a>
-                <a href="#" class="btn btn-block btn-social btn-google btn-flat">
-                    <i class="fa fa-google-plus"></i> Sign in using
-                    Google+
-                </a>
-            </div>*@
+                <form method="post" action="/Account/ExternalLogin">
+                    @Html.AntiForgeryToken()
+                    <input type="text" name="provider" value="Facebook" hidden />
+                    <button type="submit" class="btn btn-block btn-social btn-facebook btn-flat" id="Facebook">
+                        <i class="fa fa-facebook"></i> Sign in using
+                        Facebook
+                    </button>
+                </form>
+                <br />
+                <form method="post" action="/Account/ExternalLogin">
+                    @Html.AntiForgeryToken()
+                    <a href="#" class="btn btn-block btn-social btn-google btn-flat">
+                        <i class="fa fa-google-plus"></i> Sign in using
+                        Google+
+                    </a>
+                </form>
+            </div>
+
             <!-- /.social-auth-links -->
             <a href="#">I forgot my password</a><br>
             <a href="/Account/Register" class="text-center">Register a new membership</a>
@@ -94,13 +105,14 @@
     <script src="~/Assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- iCheck -->
     <script src="~/Assets/plugins/iCheck/icheck.min.js"></script>
-    <script>$(function () {
-    $('input').iCheck({
-      checkboxClass: 'icheckbox_square-blue',
-      radioClass: 'iradio_square-blue',
-      increaseArea: '20%' /* optional */
-    });
-  });</script>
+    <script>
+        $(function () {
+            $('input').iCheck({
+                checkboxClass: 'icheckbox_square-blue',
+                radioClass: 'iradio_square-blue',
+                increaseArea: '20%' /* optional */
+            });
+        });</script>
 </body>
 </html>
 
